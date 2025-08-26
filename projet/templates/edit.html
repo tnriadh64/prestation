@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Modifier une Prestation</h2>
+
+<form method="post">
+    <label>Nom :</label>
+    <input type="text" name="nom" value="{{ prestation[1] }}" required>
+
+    <label>Nature :</label>
+    <input type="text" name="nature" value="{{ prestation[2] }}">
+
+    <label>Période (MM-YYYY) :</label>
+    <input type="text" name="periode" value="{{ prestation[3] }}" required>
+
+    <label>Montant Prestation :</label>
+    <input type="number" step="0.01" name="montant_prestation" value="{{ prestation[4] }}" required>
+
+    <label>Montant à Retenir :</label>
+    <input type="number" step="0.01" name="montant_retenir" value="{{ prestation[5] }}">
+
+    <label>Montant Payé Précédemment :</label>
+    <input type="number" step="0.01" name="montant_paye_precedent" value="{{ prestation[6] }}">
+
+    <label>Imputation :</label>
+    <select name="imputation">
+        <option value="01 DEBO TRAVAUX" {% if prestation[7] == "01 DEBO TRAVAUX" %}selected{% endif %}>01 DEBO TRAVAUX</option>
+        <option value="02 BBE" {% if prestation[7] == "02 BBE" %}selected{% endif %}>02 BBE</option>
+        <option value="03 HADID SULTANA" {% if prestation[7] == "03 HADID SULTANA" %}selected{% endif %}>03 HADID SULTANA</option>
+    </select>
+
+    <label>Observations :</label>
+    <input type="text" name="observations" value="{{ prestation[8] }}">
+
+    <label>Projet :</label>
+    <input type="text" name="projet" value="{{ prestation[9] }}">
+
+    <label>Remarque :</label>
+    <input type="text" name="remarque" value="{{ prestation[10] }}">
+
+    <button type="submit">Mettre à jour</button>
+</form>
+{% endblock %}

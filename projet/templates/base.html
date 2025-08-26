@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Prestations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>📊 Gestion des Prestations</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Accueil</a>
+            <a href="{{ url_for('add') }}">Ajouter</a>
+            <a href="{{ url_for('export_excel') }}">📥 Export Excel</a>
+            <a href="{{ url_for('export_pdf') }}">📥 Export PDF</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

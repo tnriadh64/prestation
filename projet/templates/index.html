@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Liste des Prestations</h2>
+
+<table id="prestationsTable">
+    <thead>
+        <tr>
+            <th>N° Ordre</th>
+            <th>Nom</th>
+            <th>Nature</th>
+            <th>Période</th>
+            <th>Montant Prestation</th>
+            <th>Montant à Retenir</th>
+            <th>Payé Précédemment</th>
+            <th>Montant Restant</th>
+            <th>Imputation</th>
+            <th>Observations</th>
+            <th>Projet</th>
+            <th>Remarque</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <th><input type="text" onkeyup="filterTable(0)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(1)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(2)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(3)" placeholder="MM-YYYY"></th>
+            <th><input type="text" onkeyup="filterTable(4)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(5)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(6)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(7)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(8)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(9)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(10)" placeholder="Filtrer"></th>
+            <th><input type="text" onkeyup="filterTable(11)" placeholder="Filtrer"></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in prestations %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td>{{ "%.2f"|format(p[4]) }}</td>
+            <td>{{ "%.2f"|format(p[5]) }}</td>
+            <td>{{ "%.2f"|format(p[6]) }}</td>
+            <td>{{ "%.2f"|format(p[11]) }}</td>
+            <td>{{ p[7] }}</td>
+            <td>{{ p[8] }}</td>
+            <td>{{ p[9] }}</td>
+            <td>{{ p[10] }}</td>
+            <td>
+                <a href="{{ url_for('edit', id=p[0]) }}">✏️</a>
+                <a href="{{ url_for('delete', id=p[0]) }}" onclick="return confirm('Supprimer ?')">🗑️</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="totals">
+    <p><b>Total Payé Précédemment :</b> {{ "%.2f"|format(total_paye_prec) }}</p>
+    <p><b>Total Restant à Payer :</b> {{ "%.2f"|format(total_restant) }}</p>
+</div>
+{% endblock %}
